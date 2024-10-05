@@ -5,18 +5,6 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 
-# adapted from https://mlhale.github.io/CYBR8470/modules/webservices/
-class Dog(models.Model):
-    name = models.CharField(max_length=100)
-    age = models.IntegerField()
-    breed = models.CharField(max_length=100)
-    gender = models.CharField(max_length=100)
-    color = models.CharField(max_length=100)
-    favoritefood = models.CharField(max_length=100)
-    favoritetoy = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
 
 class Breed(models.Model):
     name = models.CharField(max_length=100)
@@ -28,6 +16,22 @@ class Breed(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# adapted from https://mlhale.github.io/CYBR8470/modules/webservices/
+class Dog(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    # TODO: breed should be a foreign key, not a string
+    breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
+    gender = models.CharField(max_length=100)
+    color = models.CharField(max_length=100)
+    favoritefood = models.CharField(max_length=100)
+    favoritetoy = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 
 
 
