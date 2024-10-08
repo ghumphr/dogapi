@@ -16,7 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+#from dogapi.views import rest_get_dog
+#from dogapi.views import rest_get_breed
+from rest_framework.urlpatterns import format_suffix_patterns
+from dogapi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # These URLs were used in the initial REST test and are deprecated
+    #path('rest/dog/<int:dog_id>/', rest_get_dog, name='rest_get_dog'),
+    #path('rest/breed/<int:breed_id>/', rest_get_breed, name='rest_get_breed'),
+
+    path('api/dogs/', views.DogList.as_view()),
+    path('api/dogs/<int:dog_id>/', views.DogDetail.as_view()),
+    path('api/breeds/', views.BreedList.as_view()),
+    path('api/breeds/<int:breed_id>/', views.BreedDetail.as_view()),
 ]
