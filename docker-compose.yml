@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: dogapi
+ 
+  web:
+    build: .
+    restart: always
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    command: ["/bin/sh", "/root/runserver.sh"]
+    volumes:
+      - .:/root
