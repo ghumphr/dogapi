@@ -1,7 +1,7 @@
 FROM python
 
 # set a directory for the app
-WORKDIR /root
+WORKDIR /app/webservices
 
 # install dependencies
 #COPY requirements.txt requirements.txt
